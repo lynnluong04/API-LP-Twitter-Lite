@@ -70,10 +70,11 @@ const handleValidationErrors = (req, res, next) => {
 }
 
 
-router.post("/tweets", validateTweets, handleValidationErrors, asyncHandler(async(req, res) => {        // create a new tweet
-  const { tweet } = req.body;
-  const newTweet = await Tweet.create({ tweet });
-  res.status(201).json({ newTweet })
+router.post("/", validateTweets, handleValidationErrors, asyncHandler(async(req, res) => {        // create a new tweet  remove the tweets; don't want tweets/tweets
+  const { message } = req.body;     //this must be message, not tweet
+  // console.log(tweet)
+  const newTweet = await Tweet.create({ message });
+  res.json({ newTweet })
 })
 );
 
